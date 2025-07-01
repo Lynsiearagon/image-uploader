@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 
 const FileUploader = () => {
   const fileUploadInput = useRef<HTMLInputElement>(null);
-  const [filesStagedForUpload, setFilesStagedForUpload] = useState<[]>([]);
+  const [filesStagedForUpload, setFilesStagedForUpload] = useState<File[]>([]);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -17,7 +17,7 @@ const FileUploader = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e?.target?.files?.length) {
-      let uploadedFiles = [];
+      const uploadedFiles: File[] = [];
 
       Object.values(e.target.files).forEach((file) => {
         uploadedFiles.push(file);

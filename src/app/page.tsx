@@ -4,6 +4,16 @@ import FileUploader from "@/components/FileUploader";
 import UploadedImage from "@/components/UploadedImage";
 import { useEffect, useState } from "react";
 
+type Image = {
+  id: number;
+  thumbnail: {
+    lqip: "string";
+    alt_text: "string";
+    width: number;
+    height: number;
+  };
+};
+
 export default function Home() {
   const [images, setImages] = useState<[]>([]);
 
@@ -37,7 +47,7 @@ export default function Home() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* This is just an example of the grid for now */}
-        {Object.values(images).map((image) => {
+        {Object.values(images).map((image: Image) => {
           return <UploadedImage image={image} key={image.id} />;
         })}
       </div>

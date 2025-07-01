@@ -1,6 +1,20 @@
 import Image from "next/image";
 
-const UploadedImage = ({ image }) => {
+type Image = {
+  id: number;
+  thumbnail: {
+    lqip: "string";
+    alt_text: "string";
+    width: number;
+    height: number;
+  };
+};
+
+interface UploadedImageProps {
+  image: Image;
+}
+
+const UploadedImage = ({ image }: UploadedImageProps) => {
   return (
     <Image
       src={image.thumbnail.lqip}

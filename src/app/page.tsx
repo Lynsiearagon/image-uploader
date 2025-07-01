@@ -1,7 +1,7 @@
 "use client";
 import SearchBar from "@/components/SearchBar";
-import UploadButtons from "@/components/UploadButton";
-import Image from "next/image";
+import FileUploader from "@/components/FileUploader";
+import UploadedImage from "@/components/UploadedImage";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
   useEffect(() => {
     async function getPics() {
       const pics = await fetch(
-        `https://api.artic.edu/api/v1/artworks?page=2&limit=10`
+        `https://api.artic.edu/api/v1/artworks?page=2&limit=5`
       );
 
       if (pics.ok) {
@@ -30,24 +30,15 @@ export default function Home() {
       </h1>
       <div className="flex flex-col md:flex-row justify-between w-full gap-4">
         <SearchBar />
-        <UploadButtons />
+        <FileUploader />
       </div>
 
-      <p>{`{X}`} Images</p>
+      <p className="text-lg">{images.length} Images</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* This is just an example of the grid for now */}
         {Object.values(images).map((image) => {
-          return (
-            <Image
-              src={image.thumbnail.lqip}
-              alt={image.thumbnail.alt_text}
-              key={image.id}
-              width={image.thumbnail.width}
-              height={image.thumbnail.height}
-              className="w-full h-full object-cover"
-            />
-          );
+          return <UploadedImage image={image} key={image.id} />;
         })}
       </div>
     </main>

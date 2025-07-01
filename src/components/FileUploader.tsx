@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 
-const UploadButtons = () => {
+const FileUploader = () => {
   const fileUploadInput = useRef<HTMLInputElement>(null);
   const [filesStagedForUpload, setFilesStagedForUpload] = useState<[]>([]);
 
@@ -32,6 +32,7 @@ const UploadButtons = () => {
     // send the data in a POST request to the api; Something alongs the lines of ('/api/photos)
     const data = JSON.stringify(filesStagedForUpload);
     console.log(data);
+    setFilesStagedForUpload([]);
   };
 
   return (
@@ -72,4 +73,4 @@ const UploadButtons = () => {
   );
 };
 
-export default UploadButtons;
+export default FileUploader;
